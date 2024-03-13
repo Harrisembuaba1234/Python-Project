@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-        
-=======
 import json
 
 class Perkenalan:
@@ -14,4 +10,3 @@ def untuk_menambah():
     kampus = input("Masukkan Asal kampus: ")
     return Perkenalan(nama, kampus)
 
->>>>>>> 92c863b3601eee304dd76ab148e31fde89e25c04
