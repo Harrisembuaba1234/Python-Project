@@ -33,13 +33,23 @@ def main():
         choice = input("Pilih menu: ")
 
         if choice == "1":
-            break
+            name =input("Masukkan Nama Tugas: ")
+            task_manager.add_task(name)
+            print("TUgas berhasil ditambah.")
+            save_to_json(task_manager.get_tasks())
+            
 
         elif choice == "2":
-            break
+            tasks = task_manager.get_tasks()
+            for i, task in enumerate(tasks,1):
+                print(f"{i}.{task.name}({task.status})")
+            
 
         elif choice == "3":
-            break
+            task_id = int(input("Masukkan ID Tugas Yang ingin Diselesaikan: "))
+            task_manager.complete_task(task_id)
+            print("tugas selesai.")
+            save_to_json(task_manager.get_tasks())
 
         elif choice == "4":
             break
