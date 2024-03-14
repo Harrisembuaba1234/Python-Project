@@ -1,20 +1,28 @@
 import unittest
 from tasks.task_manager import TaskManager
 
+
 class TestTaskManager(unittest.TestCase):
-    def setUp(self):
-        self.task_manager = TaskManager()
-
     def test_add_task(self):
-        task = {"id": 1, "title": "Test Task", "completed": False}
-        self.task_manager.add_task(task)
-        self.assertIn(task, self.task_manager.get_tasks())
-        
-    def test_complete_task(self):
-        task = {"id": 1, "title": "Test Task", "completed": False}
-        self.task_manager.add_task(task)
-        self.task_manager.complete_task(1)
-        self.assertTrue(self.task_manager.get_tasks()[0]["completed"])
+        task_manager = TaskManager.get_instance()
+        task_manager.add_task("Belajar Python")
+        self.assertEqual(len(task_manager.get_tasks()), 1)
 
-if __name__ == "_main_":
-   unittest.main()
+    def test_get_tasks(self):
+        task_manager = TaskManager.get_instance()
+        task_manager.add_task("Belajar Python")
+        task_manager.complete_task(1)
+        tasks = task_manager.get_tasks()
+        self.assertEqual(tasks[0].name, "Belajar Python")
+        self.assertEqual(tasks[0].status, "Selesai")  
+
+    def test_complete_task(self):
+        task_manager = TaskManager.get_instance()
+        task_manager.add_task("Belajar Python")
+        task_manager.complete_task(1)
+        tasks = task_manager.get_tasks()
+        self.assertEqual(tasks[0].name, "Belajar Python")
+
+
+if __name__ == "__main__":
+    unittest.main()
